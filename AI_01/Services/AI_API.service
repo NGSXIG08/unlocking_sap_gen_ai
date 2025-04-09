@@ -1,0 +1,7 @@
+{
+	"DestinationName": "AI_API",
+	"PathSuffix": "/inference/deployments/d781c23f6d6613b2",
+	"OfflineEnabled": false,
+	"SourceType": "Mobile",
+	"RestService": true
+}
