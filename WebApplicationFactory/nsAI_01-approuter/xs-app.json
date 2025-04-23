@@ -1,0 +1,12 @@
+{
+	"authenticationMethod": "route",
+	"routes": [
+		{
+			"csrfProtection": false,
+			"source": "^/AI_API/(.*)$",
+			"target": "$1",
+			"destination": "AI_API",
+			"authenticationType": "xsuaa"
+		}
+	]
+}

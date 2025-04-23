@@ -1,2 +1,2 @@
 Pass:
-Generated bundle file /home/user/projects/i751878/AI_01/.build/AI_01/.build/uploadBundle.zip
+Generated bundle file /home/user/projects/unlocking_sap_gen_ai/AI_01/.build/AI_01/.build/uploadBundle.zip

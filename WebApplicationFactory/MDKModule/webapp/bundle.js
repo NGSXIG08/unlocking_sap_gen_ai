@@ -1,4 +1,14 @@
-/******/ (() => { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, () => {
+return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./build.definitions/AI_01/i18n/i18n.properties":
@@ -68,10 +78,9 @@ let ai_01_rules_logging_tracecategories_js = __webpack_require__(/*! ./AI_01/Rul
 let ai_01_rules_logging_userlogsetting_js = __webpack_require__(/*! ./AI_01/Rules/Logging/UserLogSetting.js */ "./build.definitions/AI_01/Rules/Logging/UserLogSetting.js")
 let ai_01_services_ai_api_service = __webpack_require__(/*! ./AI_01/Services/AI_API.service */ "./build.definitions/AI_01/Services/AI_API.service")
 let ai_01_styles_styles_css = __webpack_require__(/*! ./AI_01/Styles/Styles.css */ "./build.definitions/AI_01/Styles/Styles.css")
+let ai_01_styles_styles_json = __webpack_require__(/*! ./AI_01/Styles/Styles.json */ "./build.definitions/AI_01/Styles/Styles.json")
 let ai_01_styles_styles_less = __webpack_require__(/*! ./AI_01/Styles/Styles.less */ "./build.definitions/AI_01/Styles/Styles.less")
-let ai_01_styles_styles_light_css = __webpack_require__(/*! ./AI_01/Styles/Styles.light.css */ "./build.definitions/AI_01/Styles/Styles.light.css")
-let ai_01_styles_styles_light_json = __webpack_require__(/*! ./AI_01/Styles/Styles.light.json */ "./build.definitions/AI_01/Styles/Styles.light.json")
-let ai_01_styles_styles_light_nss = __webpack_require__(/*! ./AI_01/Styles/Styles.light.nss */ "./build.definitions/AI_01/Styles/Styles.light.nss")
+let ai_01_styles_styles_nss = __webpack_require__(/*! ./AI_01/Styles/Styles.nss */ "./build.definitions/AI_01/Styles/Styles.nss")
 let application_app = __webpack_require__(/*! ./Application.app */ "./build.definitions/Application.app")
 let tsconfig_json = __webpack_require__(/*! ./tsconfig.json */ "./build.definitions/tsconfig.json")
 let version_mdkbundlerversion = __webpack_require__(/*! ./version.mdkbundlerversion */ "./build.definitions/version.mdkbundlerversion")
@@ -128,10 +137,9 @@ module.exports = {
 	ai_01_rules_logging_userlogsetting_js : ai_01_rules_logging_userlogsetting_js,
 	ai_01_services_ai_api_service : ai_01_services_ai_api_service,
 	ai_01_styles_styles_css : ai_01_styles_styles_css,
+	ai_01_styles_styles_json : ai_01_styles_styles_json,
 	ai_01_styles_styles_less : ai_01_styles_styles_less,
-	ai_01_styles_styles_light_css : ai_01_styles_styles_light_css,
-	ai_01_styles_styles_light_json : ai_01_styles_styles_light_json,
-	ai_01_styles_styles_light_nss : ai_01_styles_styles_light_nss,
+	ai_01_styles_styles_nss : ai_01_styles_styles_nss,
 	application_app : application_app,
 	tsconfig_json : tsconfig_json,
 	version_mdkbundlerversion : version_mdkbundlerversion
@@ -766,7 +774,7 @@ Examples:
 @mdkRed1: #ff0000;
 
 //// By-Type style: All Pages in the application will now have a yellow background
-Page
+div.MDKPage
 
 { background-color: @mdkYellow1; }
 //// By-Name style: All Buttons with _Name == "BlueButton" will now have this style
@@ -779,7 +787,7 @@ Page
 
 { color: @mdkYellow1; background-color: @mdkRed1; }
 */
-`, "",{"version":3,"sources":["webpack://./build.definitions/AI_01/Styles/Styles.css"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;CAoBC","sourcesContent":["/* The LESS stylesheet provides the ability to define styling styles that can be used to style the UI in the MDK app.\n\nExamples:\n\n@mdkYellow1: #ffbb33;\n@mdkRed1: #ff0000;\n\n//// By-Type style: All Pages in the application will now have a yellow background\nPage\n\n{ background-color: @mdkYellow1; }\n//// By-Name style: All Buttons with _Name == \"BlueButton\" will now have this style\n#BlueButton\n\n{ color: @mdkYellow1; background-color: #0000FF; }\n//// By-Class style: These style classes can be referenced from rules and set using ClientAPI setStyle function\n\n.MyButton\n\n{ color: @mdkYellow1; background-color: @mdkRed1; }\n*/\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./build.definitions/AI_01/Styles/Styles.css"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;CAoBC","sourcesContent":["/* The LESS stylesheet provides the ability to define styling styles that can be used to style the UI in the MDK app.\n\nExamples:\n\n@mdkYellow1: #ffbb33;\n@mdkRed1: #ff0000;\n\n//// By-Type style: All Pages in the application will now have a yellow background\ndiv.MDKPage\n\n{ background-color: @mdkYellow1; }\n//// By-Name style: All Buttons with _Name == \"BlueButton\" will now have this style\n#BlueButton\n\n{ color: @mdkYellow1; background-color: #0000FF; }\n//// By-Class style: These style classes can be referenced from rules and set using ClientAPI setStyle function\n\n.MyButton\n\n{ color: @mdkYellow1; background-color: @mdkRed1; }\n*/\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -824,28 +832,10 @@ module.exports = ___CSS_LOADER_EXPORT___;
 
 /***/ }),
 
-/***/ "./build.definitions/AI_01/Styles/Styles.light.css":
-/*!*********************************************************!*\
-  !*** ./build.definitions/AI_01/Styles/Styles.light.css ***!
-  \*********************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-// Imports
-var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../../../../css-loader/dist/runtime/sourceMaps.js */ "../../../../css-loader/dist/runtime/sourceMaps.js");
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../../css-loader/dist/runtime/api.js */ "../../../../css-loader/dist/runtime/api.js");
-var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
-// Exports
-module.exports = ___CSS_LOADER_EXPORT___;
-
-
-/***/ }),
-
-/***/ "./build.definitions/AI_01/Styles/Styles.light.nss":
-/*!*********************************************************!*\
-  !*** ./build.definitions/AI_01/Styles/Styles.light.nss ***!
-  \*********************************************************/
+/***/ "./build.definitions/AI_01/Styles/Styles.nss":
+/*!***************************************************!*\
+  !*** ./build.definitions/AI_01/Styles/Styles.nss ***!
+  \***************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // Imports
@@ -1027,7 +1017,7 @@ module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Typ
   \*************************************************/
 /***/ ((module) => {
 
-module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0"}],"_Type":"Page","_Name":"Test","ActionBar":{"Items":[{"_Type":"Control.Type.ActionBarItem","_Name":"ActionBarItem0","Caption":"Item","Position":"Left","IsIconCircular":false,"Visible":true,"OnPress":"/AI_01/Rules/CallAI.js"}],"_Name":"ActionBar4","_Type":"Control.Type.ActionBar"}}
+module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Visible":true,"EmptySection":{"FooterVisible":false},"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"_Type":"Section.Type.FormCell","_Name":"SectionFormCell0","Controls":[],"Layout":{"NumberOfColumns":1}}]}],"_Type":"Page","_Name":"Test","ActionBar":{"Items":[],"_Name":"ActionBar3","_Type":"Control.Type.ActionBar"}}
 
 /***/ }),
 
@@ -1327,7 +1317,7 @@ module.exports = {"DestinationName":"AI_API","PathSuffix":"/inference/deployment
   \*******************************************/
 /***/ ((module) => {
 
-module.exports = {"MainPage":"/AI_01/Pages/Test.page","OnWillUpdate":"/AI_01/Rules/Application/OnWillUpdate.js","Styles":"/AI_01/Styles/Styles.css","Localization":"/AI_01/i18n/i18n.properties","_Name":"AI_01","_SchemaVersion":"24.11","StyleSheets":{"Styles":{"css":"/AI_01/Styles/Styles.light.css","ios":"/AI_01/Styles/Styles.light.nss","android":"/AI_01/Styles/Styles.light.json"}},"SDKStyles":{"ios":"/AI_01/Styles/Styles.light.nss","android":"/AI_01/Styles/Styles.light.json"}}
+module.exports = {"MainPage":"/AI_01/Pages/Test.page","OnWillUpdate":"/AI_01/Rules/Application/OnWillUpdate.js","Styles":"/AI_01/Styles/Styles.less","Localization":"/AI_01/i18n/i18n.properties","_Name":"AI_01","_SchemaVersion":"24.11","StyleSheets":{"Styles":{"css":"/AI_01/Styles/Styles.css","ios":"/AI_01/Styles/Styles.nss","android":"/AI_01/Styles/Styles.json"}}}
 
 /***/ }),
 
@@ -1342,51 +1332,10 @@ module.exports = "1.1\n";
 
 /***/ }),
 
-/***/ "webpack/container/entry/bundle.js":
-/*!***********************!*\
-  !*** container entry ***!
-  \***********************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-var moduleMap = {
-	".": () => {
-		return Promise.resolve().then(() => (() => ((__webpack_require__(/*! ./build.definitions/application-index.js */ "./build.definitions/application-index.js")))));
-	}
-};
-var get = (module, getScope) => {
-	__webpack_require__.R = getScope;
-	getScope = (
-		__webpack_require__.o(moduleMap, module)
-			? moduleMap[module]()
-			: Promise.resolve().then(() => {
-				throw new Error('Module "' + module + '" does not exist in container.');
-			})
-	);
-	__webpack_require__.R = undefined;
-	return getScope;
-};
-var init = (shareScope, initScope) => {
-	if (!__webpack_require__.S) return;
-	var name = "default"
-	var oldScope = __webpack_require__.S[name];
-	if(oldScope && oldScope !== shareScope) throw new Error("Container initialization failed as it has already been initialized with a different share scope");
-	__webpack_require__.S[name] = shareScope;
-	return __webpack_require__.I(name, initScope);
-};
-
-// This exports getters to disallow modifications
-__webpack_require__.d(exports, {
-	get: () => (get),
-	init: () => (init)
-});
-
-/***/ }),
-
-/***/ "./build.definitions/AI_01/Styles/Styles.light.json":
-/*!**********************************************************!*\
-  !*** ./build.definitions/AI_01/Styles/Styles.light.json ***!
-  \**********************************************************/
+/***/ "./build.definitions/AI_01/Styles/Styles.json":
+/*!****************************************************!*\
+  !*** ./build.definitions/AI_01/Styles/Styles.json ***!
+  \****************************************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1442,12 +1391,6 @@ module.exports = /*#__PURE__*/JSON.parse('{"compilerOptions":{"module":"esnext",
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = __webpack_module_cache__;
-/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
@@ -1477,62 +1420,15 @@ module.exports = /*#__PURE__*/JSON.parse('{"compilerOptions":{"module":"esnext",
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/sharing */
-/******/ 	(() => {
-/******/ 		__webpack_require__.S = {};
-/******/ 		var initPromises = {};
-/******/ 		var initTokens = {};
-/******/ 		__webpack_require__.I = (name, initScope) => {
-/******/ 			if(!initScope) initScope = [];
-/******/ 			// handling circular init calls
-/******/ 			var initToken = initTokens[name];
-/******/ 			if(!initToken) initToken = initTokens[name] = {};
-/******/ 			if(initScope.indexOf(initToken) >= 0) return;
-/******/ 			initScope.push(initToken);
-/******/ 			// only runs once
-/******/ 			if(initPromises[name]) return initPromises[name];
-/******/ 			// creates a new share scope if needed
-/******/ 			if(!__webpack_require__.o(__webpack_require__.S, name)) __webpack_require__.S[name] = {};
-/******/ 			// runs all init snippets from all modules reachable
-/******/ 			var scope = __webpack_require__.S[name];
-/******/ 			var warn = (msg) => {
-/******/ 				if (typeof console !== "undefined" && console.warn) console.warn(msg);
-/******/ 			};
-/******/ 			var uniqueName = undefined;
-/******/ 			var register = (name, version, factory, eager) => {
-/******/ 				var versions = scope[name] = scope[name] || {};
-/******/ 				var activeVersion = versions[version];
-/******/ 				if(!activeVersion || (!activeVersion.loaded && (!eager != !activeVersion.eager ? eager : uniqueName > activeVersion.from))) versions[version] = { get: factory, from: uniqueName, eager: !!eager };
-/******/ 			};
-/******/ 			var initExternal = (id) => {
-/******/ 				var handleError = (err) => (warn("Initialization of sharing external failed: " + err));
-/******/ 				try {
-/******/ 					var module = __webpack_require__(id);
-/******/ 					if(!module) return;
-/******/ 					var initFn = (module) => (module && module.init && module.init(__webpack_require__.S[name], initScope))
-/******/ 					if(module.then) return promises.push(module.then(initFn, handleError));
-/******/ 					var initResult = initFn(module);
-/******/ 					if(initResult && initResult.then) return promises.push(initResult['catch'](handleError));
-/******/ 				} catch(err) { handleError(err); }
-/******/ 			}
-/******/ 			var promises = [];
-/******/ 			switch(name) {
-/******/ 			}
-/******/ 			if(!promises.length) return initPromises[name] = 1;
-/******/ 			return initPromises[name] = Promise.all(promises).then(() => (initPromises[name] = 1));
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /************************************************************************/
 /******/ 	
-/******/ 	// module cache are used so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	var __webpack_exports__ = __webpack_require__("webpack/container/entry/bundle.js");
-/******/ 	var __webpack_export_target__ = exports;
-/******/ 	for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];
-/******/ 	if(__webpack_exports__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./build.definitions/application-index.js");
 /******/ 	
+/******/ 	return __webpack_exports__;
 /******/ })()
 ;
+});
 //# sourceMappingURL=bundle.js.map

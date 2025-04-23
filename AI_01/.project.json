@@ -3,7 +3,25 @@
 	"CF": {
 		"Target": "https://api.cf.us10-002.hana.ondemand.com",
 		"Organization": "5a0e5f2f-0abf-4079-b0e2-1737ef2a75fd",
-		"Space": "5fd83700-c20e-422a-b97d-122b2ccdcb0f"
+		"Space": "5fd83700-c20e-422a-b97d-122b2ccdcb0f",
+		"Deploy": {
+			"Destination": [
+				{
+					"CF": "AI_API",
+					"MDK": "AI_API",
+					"URL": ""
+				}
+			],
+			"Name": "ns.AI_01",
+			"Version": "1.0.0",
+			"AppRouter": "standalone",
+			"WebClient": {
+				"Runtime": "production",
+				"URL": "https://mdk-webclient-runtime.cfapps.us10.hana.ondemand.com/runtime/"
+			},
+			"Auth": true,
+			"URL": "https://lac-demandgeneration-i751878-7unmyyvx-dev-nsai-01-approuter.cfapps.us10-002.hana.ondemand.com/nsAI_01"
+		}
 	},
 	"MobileService": {
 		"AdminAPI": "https://mobile-service-cockpit-api.cfapps.us10.hana.ondemand.com/cockpit/v1/org/5a0e5f2f-0abf-4079-b0e2-1737ef2a75fd/space/5fd83700-c20e-422a-b97d-122b2ccdcb0f",

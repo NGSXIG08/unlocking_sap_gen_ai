@@ -1,0 +1,29 @@
+{
+	"xsappname": "nsAI_01",
+	"tenant-mode": "dedicated",
+	"description": "Security profile of called application",
+	"scopes": [
+		{
+			"name": "uaa.user",
+			"description": "UAA"
+		}
+	],
+	"role-templates": [
+		{
+			"name": "Token_Exchange",
+			"description": "UAA",
+			"scope-references": [
+				"uaa.user"
+			]
+		}
+	],
+	"oauth2-configuration": {
+		"redirect-uris": [
+			"https://lac-demandgeneration-i751878-7unmyyvx-dev-nsai-01-approuter.cfapps.us10-002.hana.ondemand.com/**"
+		],
+		"credential-types": [
+			"binding-secret",
+			"x509"
+		]
+	}
+}

@@ -1,0 +1,24 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+	  {
+		"name": "Run WebApplicationFactory",
+		"type": "node",
+		"request": "launch",
+		"program": "${workspaceFolder}/nsAI_01-approuter/node_modules/@sap/html5-repo-mock/index.js",
+		"args": [
+		  "--standalone",
+		  "/nsAI_01/index.html",
+		  "--ui5",
+		  "{\"version\":\".\"}"
+		],
+		"cwd": "${workspaceFolder}/MDKModule",
+		"env": {
+		  "PORT": "6004",
+		  "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+		  "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/unlocking_sap_gen_ai/WebApplicationFactory/MDKModule\"}"
+		},
+		"envFile": "${workspaceFolder}/.vscode/.envmdk"
+	  }
+	]
+  }

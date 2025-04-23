@@ -1,0 +1,14 @@
+{
+	"name": "appinfo",
+	"description": "Node.js based application for app info",
+	"engines": {
+		"node": "^18.0.0 || ^20.0.0"
+	},
+	"dependencies": {
+		"express": "^4.19.2"
+	},
+	"scripts": {
+		"start": "node app.js",
+		"start-local": "node app.js"
+	}
+}

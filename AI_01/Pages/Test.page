@@ -1,0 +1,29 @@
+{
+	"Controls": [
+		{
+			"FilterFeedbackBar": {
+				"ShowAllFilters": false,
+				"_Type": "Control.Type.FilterFeedbackBar"
+			},
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable0"
+		}
+	],
+	"_Type": "Page",
+	"_Name": "Test",
+	"ActionBar": {
+		"Items": [
+			{
+				"_Type": "Control.Type.ActionBarItem",
+				"_Name": "ActionBarItem0",
+				"Caption": "Item",
+				"Position": "Left",
+				"IsIconCircular": false,
+				"Visible": true,
+				"OnPress": "/AI_01/Rules/CallAI.js"
+			}
+		],
+		"_Name": "ActionBar4",
+		"_Type": "Control.Type.ActionBar"
+	}
+}
