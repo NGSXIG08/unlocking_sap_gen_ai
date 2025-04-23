@@ -1,3 +1,7 @@
 {
-    "css.customData": ["./.vscode/my-less.css-data.json"]
+    "css.customData": ["./.vscode/my-less.css-data.json"],
+    "mdk.mobileservice": {
+        "adminAPI": "https://mobile-service-cockpit-web.cfapps.us10.hana.ondemand.com/cockpit/v1/org/5a0e5f2f-0abf-4079-b0e2-1737ef2a75fd/space/5fd83700-c20e-422a-b97d-122b2ccdcb0f",
+        "appId": "i751878"
+    }
 }

@@ -2,7 +2,7 @@
  * Describe this function...
  * @param {IClientAPI} clientAPI
  */
-export default function CallAI(clientAPI) {
+export default async function CallAI(clientAPI) {
     try{
         //clientAPI.showActivityIndicator();
         clientAPI.getPageProxy().getAppClientData().body = {
@@ -42,10 +42,10 @@ export default function CallAI(clientAPI) {
             }
         };
         
-        var responseChat = clientAPI.executeAction({
+        var responseChat = await clientAPI.executeAction({
             "Name": "/AI_01/Actions/Completion.action"
         });
-        /*
+        
         let chatResponseText = responseChat?.data?.orchestration_result?.choices?.[0]?.message?.content || "Error";
 
         if (chatResponseText == "Error") {
@@ -65,7 +65,7 @@ export default function CallAI(clientAPI) {
                 "Message": chatResponseText
             }
         });
-        */
+        
     }catch(error){
         clientAPI.executeAction({
             "Name": "/AI_01/Actions/GenericToastMessage.action",

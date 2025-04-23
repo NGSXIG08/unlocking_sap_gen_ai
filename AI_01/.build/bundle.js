@@ -1,6 +1,17 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./build.definitions/version.mdkbundlerversion":
+/*!*****************************************************!*\
+  !*** ./build.definitions/version.mdkbundlerversion ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "1.1 \r\n";
+
+/***/ }),
+
 /***/ "./build.definitions/AI_01/i18n/i18n.properties":
 /*!******************************************************!*\
   !*** ./build.definitions/AI_01/i18n/i18n.properties ***!
@@ -411,7 +422,7 @@ __webpack_require__.r(__webpack_exports__);
  * Describe this function...
  * @param {IClientAPI} clientAPI
  */
-function CallAI(clientAPI) {
+async function CallAI(clientAPI) {
   try {
     //clientAPI.showActivityIndicator();
     clientAPI.getPageProxy().getAppClientData().body = {
@@ -445,28 +456,26 @@ function CallAI(clientAPI) {
         "input": "input"
       }
     };
-    var responseChat = clientAPI.executeAction({
+    var responseChat = await clientAPI.executeAction({
       "Name": "/AI_01/Actions/Completion.action"
     });
-    /*
     let chatResponseText = responseChat?.data?.orchestration_result?.choices?.[0]?.message?.content || "Error";
-     if (chatResponseText == "Error") {
-        clientAPI.executeAction({
-            "Name": "/MDK024/Actions/GenericToastMessage.action",
-            "Properties": {
-                "Message": "Error "
-            }
-        });
-        clientAPI.dismissActivityIndicator();
-        return;
-    }
-     clientAPI.executeAction({
+    if (chatResponseText == "Error") {
+      clientAPI.executeAction({
         "Name": "/MDK024/Actions/GenericToastMessage.action",
         "Properties": {
-            "Message": chatResponseText
+          "Message": "Error "
         }
+      });
+      clientAPI.dismissActivityIndicator();
+      return;
+    }
+    clientAPI.executeAction({
+      "Name": "/MDK024/Actions/GenericToastMessage.action",
+      "Properties": {
+        "Message": chatResponseText
+      }
     });
-    */
   } catch (error) {
     clientAPI.executeAction({
       "Name": "/AI_01/Actions/GenericToastMessage.action",
@@ -817,7 +826,7 @@ Page
 .MyButton
 
 { color: @mdkYellow1; background-color: @mdkRed1; }
-*/`, "",{"version":3,"sources":["webpack://./build.definitions/AI_01/Styles/Styles.less"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;CAoBC","sourcesContent":["/* The LESS stylesheet provides the ability to define styling styles that can be used to style the UI in the MDK app.\n\nExamples:\n\n@mdkYellow1: #ffbb33;\n@mdkRed1: #ff0000;\n\n//// By-Type style: All Pages in the application will now have a yellow background\nPage\n\n{ background-color: @mdkYellow1; }\n//// By-Name style: All Buttons with _Name == \"BlueButton\" will now have this style\n#BlueButton\n\n{ color: @mdkYellow1; background-color: #0000FF; }\n//// By-Class style: These style classes can be referenced from rules and set using ClientAPI setStyle function\n\n.MyButton\n\n{ color: @mdkYellow1; background-color: @mdkRed1; }\n*/"],"sourceRoot":""}]);
+*/`, "",{"version":3,"sources":["webpack://./build.definitions/AI_01/Styles/Styles.less"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;CAoBC","sourcesContent":["/* The LESS stylesheet provides the ability to define styling styles that can be used to style the UI in the MDK app.\r\n\r\nExamples:\r\n\r\n@mdkYellow1: #ffbb33;\r\n@mdkRed1: #ff0000;\r\n\r\n//// By-Type style: All Pages in the application will now have a yellow background\r\nPage\r\n\r\n{ background-color: @mdkYellow1; }\r\n//// By-Name style: All Buttons with _Name == \"BlueButton\" will now have this style\r\n#BlueButton\r\n\r\n{ color: @mdkYellow1; background-color: #0000FF; }\r\n//// By-Class style: These style classes can be referenced from rules and set using ClientAPI setStyle function\r\n\r\n.MyButton\r\n\r\n{ color: @mdkYellow1; background-color: @mdkRed1; }\r\n*/"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -1328,17 +1337,6 @@ module.exports = {"DestinationName":"AI_API","PathSuffix":"/inference/deployment
 /***/ ((module) => {
 
 module.exports = {"MainPage":"/AI_01/Pages/Test.page","OnWillUpdate":"/AI_01/Rules/Application/OnWillUpdate.js","Styles":"/AI_01/Styles/Styles.css","Localization":"/AI_01/i18n/i18n.properties","_Name":"AI_01","_SchemaVersion":"24.11","StyleSheets":{"Styles":{"css":"/AI_01/Styles/Styles.light.css","ios":"/AI_01/Styles/Styles.light.nss","android":"/AI_01/Styles/Styles.light.json"}},"SDKStyles":{"ios":"/AI_01/Styles/Styles.light.nss","android":"/AI_01/Styles/Styles.light.json"}}
-
-/***/ }),
-
-/***/ "./build.definitions/version.mdkbundlerversion":
-/*!*****************************************************!*\
-  !*** ./build.definitions/version.mdkbundlerversion ***!
-  \*****************************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = "1.1\n";
 
 /***/ }),
 
