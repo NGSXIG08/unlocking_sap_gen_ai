@@ -6,7 +6,51 @@
 				"_Type": "Control.Type.FilterFeedbackBar"
 			},
 			"_Type": "Control.Type.SectionedTable",
-			"_Name": "SectionedTable0"
+			"_Name": "SectionedTable0",
+			"Sections": [
+				{
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Separators": {
+						"TopSectionSeparator": false,
+						"BottomSectionSeparator": true,
+						"HeaderSeparator": true,
+						"FooterSeparator": true,
+						"ControlSeparator": true
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell0",
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.Note",
+							"_Name": "FormCellNote0",
+							"IsVisible": true,
+							"Separator": true,
+							"PlaceHolder": "Question",
+							"MaxNumberOfLines": 10,
+							"MinNumberOfLines": 10,
+							"Enabled": true,
+							"IsEditable": true
+						},
+						{
+							"_Type": "Control.Type.FormCell.Note",
+							"_Name": "FormCellNote1",
+							"IsVisible": true,
+							"Separator": true,
+							"PlaceHolder": "Answer",
+							"MaxNumberOfLines": 10,
+							"MinNumberOfLines": 10,
+							"Enabled": true,
+							"IsEditable": true
+						}
+					],
+					"Layout": {
+						"NumberOfColumns": 1
+					}
+				}
+			]
 		}
 	],
 	"_Type": "Page",
@@ -16,7 +60,7 @@
 			{
 				"_Type": "Control.Type.ActionBarItem",
 				"_Name": "ActionBarItem0",
-				"Caption": "Item",
+				"Caption": "Call AI",
 				"Position": "Left",
 				"IsIconCircular": false,
 				"Visible": true,

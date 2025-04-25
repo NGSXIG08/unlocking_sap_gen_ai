@@ -4,7 +4,7 @@
  */
 export default async function CallAI(clientAPI) {
     try{
-        //clientAPI.showActivityIndicator();
+        clientAPI.showActivityIndicator();
         clientAPI.getPageProxy().getAppClientData().body = {
             "orchestration_config": {
                 "module_configurations": {
@@ -38,7 +38,7 @@ export default async function CallAI(clientAPI) {
                 }
             },
             "input_params": {
-                "input": "input"
+                "input": clientAPI.evaluateTargetPath("#Page:Test/#Control:FormCellNote0").getValue()
             }
         };
         
@@ -47,6 +47,8 @@ export default async function CallAI(clientAPI) {
         });
         
         let chatResponseText = responseChat?.data?.orchestration_result?.choices?.[0]?.message?.content || "Error";
+        clientAPI.evaluateTargetPath("#Page:Test/#Control:FormCellNote1").setValue(chatResponseText);
+        clientAPI.dismissActivityIndicator();
 
         if (chatResponseText == "Error") {
             clientAPI.executeAction({
