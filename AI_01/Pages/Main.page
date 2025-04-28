@@ -9,6 +9,10 @@
 			"_Name": "SectionedTable0",
 			"Sections": [
 				{
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
 					"Separators": {
 						"TopSectionSeparator": false,
 						"BottomSectionSeparator": true,
@@ -16,65 +20,35 @@
 						"FooterSeparator": true,
 						"ControlSeparator": true
 					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell0",
 					"Controls": [
-						{
-							"_Type": "Control.Type.FormCell.Label",
-							"_Name": "FormCellLabel0",
-							"IsVisible": true,
-							"Separator": true,
-							"Text": "Question",
-							"TextWrap": true
-						},
 						{
 							"_Type": "Control.Type.FormCell.Note",
 							"_Name": "FormCellNote0",
 							"IsVisible": true,
 							"Separator": true,
-							"PlaceHolder": "PlaceHolder",
+							"PlaceHolder": "Question",
+							"MaxNumberOfLines": 10,
+							"MinNumberOfLines": 10,
 							"Enabled": true,
 							"IsEditable": true
-						},
-						{
-							"_Type": "Control.Type.FormCell.Button",
-							"_Name": "FormCellButton0",
-							"IsVisible": true,
-							"Separator": true,
-							"Title": "Call AI",
-							"Alignment": "Center",
-							"ButtonType": "Text",
-							"Semantic": "Tint",
-							"Image": "res://mdk_logo.png",
-							"ImagePosition": "Leading",
-							"Enabled": true,
-							"OnPress": "/AI_01/Rules/CallAI.js"
-						},
-						{
-							"_Type": "Control.Type.FormCell.Label",
-							"_Name": "FormCellLabel1",
-							"IsVisible": true,
-							"Separator": true,
-							"Text": "Answer",
-							"TextWrap": true
 						},
 						{
 							"_Type": "Control.Type.FormCell.Note",
 							"_Name": "FormCellNote1",
 							"IsVisible": true,
 							"Separator": true,
-							"PlaceHolder": "PlaceHolder",
+							"PlaceHolder": "Answer",
+							"MaxNumberOfLines": 10,
+							"MinNumberOfLines": 10,
 							"Enabled": true,
 							"IsEditable": true
 						}
 					],
 					"Layout": {
 						"NumberOfColumns": 1
-					},
-					"Visible": true,
-					"EmptySection": {
-						"FooterVisible": false
-					},
-					"_Type": "Section.Type.FormCell",
-					"_Name": "SectionFormCell0"
+					}
 				}
 			]
 		}
@@ -86,17 +60,23 @@
 			{
 				"_Type": "Control.Type.ActionBarItem",
 				"_Name": "ActionBarItem0",
-				"Caption": "User Menu",
-				"Icon": "sap-icon://customer",
-				"Position": "Right",
+				"Caption": "Call AI",
+				"Position": "Left",
 				"IsIconCircular": false,
 				"Visible": true,
-				"OnPress": "/AI_01/Actions/Application/UserMenuPopover.action"
+				"OnPress": "/AI_01/Rules/CallAI.js"
+			},
+			{
+				"_Type": "Control.Type.ActionBarItem",
+				"_Name": "ActionBarItem1",
+				"Caption": "Upload Log",
+				"Position": "Left",
+				"IsIconCircular": false,
+				"Visible": false,
+				"OnPress": "/AI_01/Actions/Application/NavToActivityLog.action"
 			}
 		],
-		"_Name": "ActionBar1",
-		"_Type": "Control.Type.ActionBar",
-		"Caption": "Main",
-		"PrefersLargeCaption": true
+		"_Name": "ActionBar4",
+		"_Type": "Control.Type.ActionBar"
 	}
 }

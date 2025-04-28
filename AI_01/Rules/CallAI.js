@@ -5,7 +5,7 @@
 export default async function CallAI(clientAPI) {
     try{
         clientAPI.showActivityIndicator();
-        clientAPI.getPageProxy().getAppClientData().body = {
+        var body = {
             "orchestration_config": {
                 "module_configurations": {
                     "templating_module_config": {
@@ -38,21 +38,22 @@ export default async function CallAI(clientAPI) {
                 }
             },
             "input_params": {
-                "input": clientAPI.evaluateTargetPath("#Page:Test/#Control:FormCellNote0").getValue()
+                "input": clientAPI.evaluateTargetPath("#Page:Main/#Control:FormCellNote0").getValue()
             }
         };
+        clientAPI.getPageProxy().getAppClientData().body = body;
         
         var responseChat = await clientAPI.executeAction({
             "Name": "/AI_01/Actions/Completion.action"
         });
         
         let chatResponseText = responseChat?.data?.orchestration_result?.choices?.[0]?.message?.content || "Error";
-        clientAPI.evaluateTargetPath("#Page:Test/#Control:FormCellNote1").setValue(chatResponseText);
+        clientAPI.evaluateTargetPath("#Page:Main/#Control:FormCellNote1").setValue(chatResponseText);
         clientAPI.dismissActivityIndicator();
 
         if (chatResponseText == "Error") {
             clientAPI.executeAction({
-                "Name": "/MDK024/Actions/GenericToastMessage.action",
+                "Name": "/AI_01/Actions/GenericToastMessage.action",
                 "Properties": {
                     "Message": "Error "
                 }
@@ -60,19 +61,12 @@ export default async function CallAI(clientAPI) {
             clientAPI.dismissActivityIndicator();
             return;
         }
-
-        clientAPI.executeAction({
-            "Name": "/MDK024/Actions/GenericToastMessage.action",
-            "Properties": {
-                "Message": chatResponseText
-            }
-        });
         
     }catch(error){
         clientAPI.executeAction({
             "Name": "/AI_01/Actions/GenericToastMessage.action",
             "Properties": {
-                "Message": "Error "+error
+                "Message": "Catched Error :"+error
             }
         });
         clientAPI.dismissActivityIndicator();

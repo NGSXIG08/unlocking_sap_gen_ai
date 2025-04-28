@@ -26,7 +26,12 @@
       "request": "launch",
       "platform": "android",
       "sourceMaps": true,
-      "watch": true
+      "watch": true,
+      "appRoot": "C:/S/MDKCSDK/i751878",
+      "tnsArgs": [
+        "--device",
+        "R5CX40Q907P"
+      ]
     },
     {
       "name": "MDK Attach on Android",
