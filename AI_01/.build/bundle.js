@@ -1,6 +1,17 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./build.definitions/version.mdkbundlerversion":
+/*!*****************************************************!*\
+  !*** ./build.definitions/version.mdkbundlerversion ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "1.1 \r\n";
+
+/***/ }),
+
 /***/ "./build.definitions/AI_01/i18n/i18n.properties":
 /*!******************************************************!*\
   !*** ./build.definitions/AI_01/i18n/i18n.properties ***!
@@ -51,7 +62,6 @@ let ai_01_pages_application_about_page = __webpack_require__(/*! ./AI_01/Pages/A
 let ai_01_pages_application_support_page = __webpack_require__(/*! ./AI_01/Pages/Application/Support.page */ "./build.definitions/AI_01/Pages/Application/Support.page")
 let ai_01_pages_application_useractivitylog_page = __webpack_require__(/*! ./AI_01/Pages/Application/UserActivityLog.page */ "./build.definitions/AI_01/Pages/Application/UserActivityLog.page")
 let ai_01_pages_main_page = __webpack_require__(/*! ./AI_01/Pages/Main.page */ "./build.definitions/AI_01/Pages/Main.page")
-let ai_01_pages_test_page = __webpack_require__(/*! ./AI_01/Pages/Test.page */ "./build.definitions/AI_01/Pages/Test.page")
 let ai_01_rules_application_appupdatefailure_js = __webpack_require__(/*! ./AI_01/Rules/Application/AppUpdateFailure.js */ "./build.definitions/AI_01/Rules/Application/AppUpdateFailure.js")
 let ai_01_rules_application_appupdatesuccess_js = __webpack_require__(/*! ./AI_01/Rules/Application/AppUpdateSuccess.js */ "./build.definitions/AI_01/Rules/Application/AppUpdateSuccess.js")
 let ai_01_rules_application_clientismultiusermode_js = __webpack_require__(/*! ./AI_01/Rules/Application/ClientIsMultiUserMode.js */ "./build.definitions/AI_01/Rules/Application/ClientIsMultiUserMode.js")
@@ -111,7 +121,6 @@ module.exports = {
 	ai_01_pages_application_support_page : ai_01_pages_application_support_page,
 	ai_01_pages_application_useractivitylog_page : ai_01_pages_application_useractivitylog_page,
 	ai_01_pages_main_page : ai_01_pages_main_page,
-	ai_01_pages_test_page : ai_01_pages_test_page,
 	ai_01_rules_application_appupdatefailure_js : ai_01_rules_application_appupdatefailure_js,
 	ai_01_rules_application_appupdatesuccess_js : ai_01_rules_application_appupdatesuccess_js,
 	ai_01_rules_application_clientismultiusermode_js : ai_01_rules_application_clientismultiusermode_js,
@@ -414,7 +423,7 @@ __webpack_require__.r(__webpack_exports__);
 async function CallAI(clientAPI) {
   try {
     clientAPI.showActivityIndicator();
-    clientAPI.getPageProxy().getAppClientData().body = {
+    var body = {
       "orchestration_config": {
         "module_configurations": {
           "templating_module_config": {
@@ -442,18 +451,19 @@ async function CallAI(clientAPI) {
         }
       },
       "input_params": {
-        "input": clientAPI.evaluateTargetPath("#Page:Test/#Control:FormCellNote0").getValue()
+        "input": clientAPI.evaluateTargetPath("#Page:Main/#Control:FormCellNote0").getValue()
       }
     };
+    clientAPI.getPageProxy().getAppClientData().body = body;
     var responseChat = await clientAPI.executeAction({
       "Name": "/AI_01/Actions/Completion.action"
     });
     let chatResponseText = responseChat?.data?.orchestration_result?.choices?.[0]?.message?.content || "Error";
-    clientAPI.evaluateTargetPath("#Page:Test/#Control:FormCellNote1").setValue(chatResponseText);
+    clientAPI.evaluateTargetPath("#Page:Main/#Control:FormCellNote1").setValue(chatResponseText);
     clientAPI.dismissActivityIndicator();
     if (chatResponseText == "Error") {
       clientAPI.executeAction({
-        "Name": "/MDK024/Actions/GenericToastMessage.action",
+        "Name": "/AI_01/Actions/GenericToastMessage.action",
         "Properties": {
           "Message": "Error "
         }
@@ -461,17 +471,11 @@ async function CallAI(clientAPI) {
       clientAPI.dismissActivityIndicator();
       return;
     }
-    clientAPI.executeAction({
-      "Name": "/MDK024/Actions/GenericToastMessage.action",
-      "Properties": {
-        "Message": chatResponseText
-      }
-    });
   } catch (error) {
     clientAPI.executeAction({
       "Name": "/AI_01/Actions/GenericToastMessage.action",
       "Properties": {
-        "Message": "Error " + error
+        "Message": "Catched Error :" + error
       }
     });
     clientAPI.dismissActivityIndicator();
@@ -817,7 +821,7 @@ Page
 .MyButton
 
 { color: @mdkYellow1; background-color: @mdkRed1; }
-*/`, "",{"version":3,"sources":["webpack://./build.definitions/AI_01/Styles/Styles.less"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;CAoBC","sourcesContent":["/* The LESS stylesheet provides the ability to define styling styles that can be used to style the UI in the MDK app.\n\nExamples:\n\n@mdkYellow1: #ffbb33;\n@mdkRed1: #ff0000;\n\n//// By-Type style: All Pages in the application will now have a yellow background\nPage\n\n{ background-color: @mdkYellow1; }\n//// By-Name style: All Buttons with _Name == \"BlueButton\" will now have this style\n#BlueButton\n\n{ color: @mdkYellow1; background-color: #0000FF; }\n//// By-Class style: These style classes can be referenced from rules and set using ClientAPI setStyle function\n\n.MyButton\n\n{ color: @mdkYellow1; background-color: @mdkRed1; }\n*/"],"sourceRoot":""}]);
+*/`, "",{"version":3,"sources":["webpack://./build.definitions/AI_01/Styles/Styles.less"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;CAoBC","sourcesContent":["/* The LESS stylesheet provides the ability to define styling styles that can be used to style the UI in the MDK app.\r\n\r\nExamples:\r\n\r\n@mdkYellow1: #ffbb33;\r\n@mdkRed1: #ff0000;\r\n\r\n//// By-Type style: All Pages in the application will now have a yellow background\r\nPage\r\n\r\n{ background-color: @mdkYellow1; }\r\n//// By-Name style: All Buttons with _Name == \"BlueButton\" will now have this style\r\n#BlueButton\r\n\r\n{ color: @mdkYellow1; background-color: #0000FF; }\r\n//// By-Class style: These style classes can be referenced from rules and set using ClientAPI setStyle function\r\n\r\n.MyButton\r\n\r\n{ color: @mdkYellow1; background-color: @mdkRed1; }\r\n*/"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -1017,17 +1021,7 @@ module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":true,"_Type
   \*************************************************/
 /***/ ((module) => {
 
-module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"Controls":[{"_Type":"Control.Type.FormCell.Label","_Name":"FormCellLabel0","IsVisible":true,"Separator":true,"Text":"Question","TextWrap":true},{"_Type":"Control.Type.FormCell.Note","_Name":"FormCellNote0","IsVisible":true,"Separator":true,"PlaceHolder":"PlaceHolder","Enabled":true,"IsEditable":true},{"_Type":"Control.Type.FormCell.Button","_Name":"FormCellButton0","IsVisible":true,"Separator":true,"Title":"Call AI","Alignment":"Center","ButtonType":"Text","Semantic":"Tint","Image":"res://mdk_logo.png","ImagePosition":"Leading","Enabled":true,"OnPress":"/AI_01/Rules/CallAI.js"},{"_Type":"Control.Type.FormCell.Label","_Name":"FormCellLabel1","IsVisible":true,"Separator":true,"Text":"Answer","TextWrap":true},{"_Type":"Control.Type.FormCell.Note","_Name":"FormCellNote1","IsVisible":true,"Separator":true,"PlaceHolder":"PlaceHolder","Enabled":true,"IsEditable":true}],"Layout":{"NumberOfColumns":1},"Visible":true,"EmptySection":{"FooterVisible":false},"_Type":"Section.Type.FormCell","_Name":"SectionFormCell0"}]}],"_Type":"Page","_Name":"Main","ActionBar":{"Items":[{"_Type":"Control.Type.ActionBarItem","_Name":"ActionBarItem0","Caption":"User Menu","Icon":"sap-icon://customer","Position":"Right","IsIconCircular":false,"Visible":true,"OnPress":"/AI_01/Actions/Application/UserMenuPopover.action"}],"_Name":"ActionBar1","_Type":"Control.Type.ActionBar","Caption":"Main","PrefersLargeCaption":true}}
-
-/***/ }),
-
-/***/ "./build.definitions/AI_01/Pages/Test.page":
-/*!*************************************************!*\
-  !*** ./build.definitions/AI_01/Pages/Test.page ***!
-  \*************************************************/
-/***/ ((module) => {
-
-module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Visible":true,"EmptySection":{"FooterVisible":false},"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"_Type":"Section.Type.FormCell","_Name":"SectionFormCell0","Controls":[{"_Type":"Control.Type.FormCell.Note","_Name":"FormCellNote0","IsVisible":true,"Separator":true,"PlaceHolder":"Question","MaxNumberOfLines":10,"MinNumberOfLines":10,"Enabled":true,"IsEditable":true},{"_Type":"Control.Type.FormCell.Note","_Name":"FormCellNote1","IsVisible":true,"Separator":true,"PlaceHolder":"Answer","MaxNumberOfLines":10,"MinNumberOfLines":10,"Enabled":true,"IsEditable":true}],"Layout":{"NumberOfColumns":1}}]}],"_Type":"Page","_Name":"Test","ActionBar":{"Items":[{"_Type":"Control.Type.ActionBarItem","_Name":"ActionBarItem0","Caption":"Call AI","Position":"Left","IsIconCircular":false,"Visible":true,"OnPress":"/AI_01/Rules/CallAI.js"}],"_Name":"ActionBar4","_Type":"Control.Type.ActionBar"}}
+module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Visible":true,"EmptySection":{"FooterVisible":false},"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"_Type":"Section.Type.FormCell","_Name":"SectionFormCell0","Controls":[{"_Type":"Control.Type.FormCell.Note","_Name":"FormCellNote0","IsVisible":true,"Separator":true,"PlaceHolder":"Question","MaxNumberOfLines":10,"MinNumberOfLines":10,"Enabled":true,"IsEditable":true},{"_Type":"Control.Type.FormCell.Note","_Name":"FormCellNote1","IsVisible":true,"Separator":true,"PlaceHolder":"Answer","MaxNumberOfLines":10,"MinNumberOfLines":10,"Enabled":true,"IsEditable":true}],"Layout":{"NumberOfColumns":1}}]}],"_Type":"Page","_Name":"Main","ActionBar":{"Items":[{"_Type":"Control.Type.ActionBarItem","_Name":"ActionBarItem0","Caption":"Call AI","Position":"Left","IsIconCircular":false,"Visible":true,"OnPress":"/AI_01/Rules/CallAI.js"},{"_Type":"Control.Type.ActionBarItem","_Name":"ActionBarItem1","Caption":"Upload Log","Position":"Left","IsIconCircular":false,"Visible":false,"OnPress":"/AI_01/Actions/Application/NavToActivityLog.action"}],"_Name":"ActionBar4","_Type":"Control.Type.ActionBar"}}
 
 /***/ }),
 
@@ -1327,18 +1321,7 @@ module.exports = {"DestinationName":"AI_API","PathSuffix":"/inference/deployment
   \*******************************************/
 /***/ ((module) => {
 
-module.exports = {"MainPage":"/AI_01/Pages/Test.page","OnWillUpdate":"/AI_01/Rules/Application/OnWillUpdate.js","Styles":"/AI_01/Styles/Styles.css","Localization":"/AI_01/i18n/i18n.properties","_Name":"AI_01","_SchemaVersion":"24.11","StyleSheets":{"Styles":{"css":"/AI_01/Styles/Styles.light.css","ios":"/AI_01/Styles/Styles.light.nss","android":"/AI_01/Styles/Styles.light.json"}},"SDKStyles":{"ios":"/AI_01/Styles/Styles.light.nss","android":"/AI_01/Styles/Styles.light.json"}}
-
-/***/ }),
-
-/***/ "./build.definitions/version.mdkbundlerversion":
-/*!*****************************************************!*\
-  !*** ./build.definitions/version.mdkbundlerversion ***!
-  \*****************************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = "1.1\n";
+module.exports = {"MainPage":"/AI_01/Pages/Main.page","OnWillUpdate":"/AI_01/Rules/Application/OnWillUpdate.js","Styles":"/AI_01/Styles/Styles.css","Localization":"/AI_01/i18n/i18n.properties","_Name":"AI_01","_SchemaVersion":"24.11","StyleSheets":{"Styles":{"css":"/AI_01/Styles/Styles.light.css","ios":"/AI_01/Styles/Styles.light.nss","android":"/AI_01/Styles/Styles.light.json"}},"SDKStyles":{"ios":"/AI_01/Styles/Styles.light.nss","android":"/AI_01/Styles/Styles.light.json"}}
 
 /***/ }),
 

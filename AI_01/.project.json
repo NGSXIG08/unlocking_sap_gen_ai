@@ -9,7 +9,7 @@
 				{
 					"CF": "AI_API",
 					"MDK": "AI_API",
-					"URL": ""
+					"URL": "https://api.ai.prod.us-east-1.aws.ml.hana.ondemand.com/v2"
 				}
 			],
 			"Name": "ns.AI_01",
