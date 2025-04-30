@@ -1,0 +1,14 @@
+{
+	"_Type": "Action.Type.RestService.SendRequest",
+	"ActionResult": {
+		"_Name": "Execution"
+	},
+	"Target": {
+		"Service": "/mdk02/Services/AI_API.service",
+		"Path": "/eb9a62758a247e1e/logs",
+		"RequestProperties": {
+			"Method": "GET",
+			"FetchCSRF": false
+		}
+	}
+}
