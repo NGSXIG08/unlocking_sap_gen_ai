@@ -12,7 +12,8 @@
 					"_Type": "Section.Type.ObjectCollection",
 					"Target": {
 						"Service": "/mdk02/Services/AI_API.service",
-						"Path": "/eb9a62758a247e1e/logs",
+						"Path": "/e0ece0cca20af9a9/logs",
+						"OutputPath": "/data/result",
 						"RequestProperties": {
 							"Method": "GET",
 							"Headers": {
@@ -28,25 +29,20 @@
 					},
 					"Separators": {
 						"TopSectionSeparator": false,
-						"BottomSectionSeparator": true,
-						"HeaderSeparator": true,
-						"FooterSeparator": true,
-						"ControlSeparator": true
+						"BottomSectionSeparator": false,
+						"HeaderSeparator": false,
+						"FooterSeparator": false,
+						"ControlSeparator": false
 					},
 					"DataPaging": {
 						"ShowLoadingIndicator": false,
 						"PageSize": 50
 					},
 					"ObjectCell": {
-						"Title": "{msg}",
-						"Subhead": "Subhead",
-						"Footnote": "Footnote",
-						"Description": "Description",
+						"Subhead": "{msg}",
 						"DisplayDescriptionInMobile": true,
-						"StatusText": "Status",
-						"SubstatusText": "Substatus",
 						"AccessoryType": "None",
-						"PreserveIconStackSpacing": true,
+						"PreserveIconStackSpacing": false,
 						"ProgressIndicator": "InProgress",
 						"ContextMenu": {
 							"PerformFirstActionWithFullSwipe": true
