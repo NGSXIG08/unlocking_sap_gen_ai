@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: data-pipeline # executable id, must be unique across all your workflows (YAML files)
+  name: data-pipeline-i751878 # executable id, must be unique across all your workflows (YAML files)
   annotations:
-    scenarios.ai.sap.com/description: "Learning how to ingest data to workflows"
-    scenarios.ai.sap.com/name: "House Price (Tutorial)" # Scenario name should be the use case
+    scenarios.ai.sap.com/description: "Introduction to SAP AI Core"
+    scenarios.ai.sap.com/name: "i751878" # Scenario name should be the use case
     executables.ai.sap.com/description: "Train with live data"
     executables.ai.sap.com/name: "training" # Executable name should describe the workflow in the use case
     artifacts.ai.sap.com/housedataset.kind: "dataset" # Helps in suggesting the kind of inputs that can be attached.
   labels:
-    scenarios.ai.sap.com/id: "learning-datalines"
+    scenarios.ai.sap.com/id: "i751878"
     ai.sap.com/version: "1.0"
 spec:
   imagePullSecrets:
-    - name: credstutorialrepo # your docker registry secret
+    - name: i751878 # your docker registry secret
   entrypoint: mypipeline
   templates:
   - name: mypipeline
@@ -26,7 +26,7 @@ spec:
         - name: housedataset # a name for the placeholder
           path: /app/data/ # where to copy in the Dataset in the Docker image
     container:
-      image: docker.io/<YOUR_DOCKER_USERNAME>/house-price:03 # Your docker image name
+      image: docker.io/jheisonurzola/house-price:03 # Your docker image name
       command: ["/bin/sh", "-c"]
       env:
         - name: DT_MAX_DEPTH # name of the environment variable inside Docker container
