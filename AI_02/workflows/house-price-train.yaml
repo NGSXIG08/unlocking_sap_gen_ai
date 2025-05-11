@@ -11,7 +11,7 @@ metadata:
     artifacts.ai.sap.com/housemodel.kind: "model" # Helps in suggesting the kind of artifact that can be generated.
   labels:
     scenarios.ai.sap.com/id: "i751878"
-    ai.sap.com/version: "2.0"
+    ai.sap.com/version: "1.0"
 spec:
   imagePullSecrets:
     - name: i751878 # your docker registry secret
