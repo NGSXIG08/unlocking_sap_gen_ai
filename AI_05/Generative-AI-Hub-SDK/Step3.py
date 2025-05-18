@@ -124,9 +124,10 @@ prompt_3 = """Giving the following message:
 ---
 {{?input}}
 ---
-Extract and return a json with the following keys and values:
+Extract and return a json with the follwoing keys and values:
 - "urgency" as one of {{?urgency}}
 - "sentiment" as one of {{?sentiment}}
+- "category" as one of {{?categories}}
 Your complete message should be a valid json string that can be read directly and only contain the keys mentioned in the list above.
 """
 f_3 = partial(send_request, prompt=prompt_3, **option_lists)
