@@ -119,3 +119,17 @@ f_1 = partial(send_request, prompt=prompt_1)
 
 response = f_1(input=mail["message"])
 
+prompt_2 = """Giving the following message:
+---
+{{?input}}
+---
+Your task is to extract:
+- "urgency" as one of {urgency}
+- "sentiment" as one of {sentiment}
+"""
+
+f_2 = partial(send_request, prompt=prompt_2, **option_lists)
+
+response = f_2(input=mail["message"])
+
+
