@@ -15,7 +15,7 @@ from gen_ai_hub.orchestration.models.config import OrchestrationConfig
 from gen_ai_hub.orchestration.models.llm import LLM
 from gen_ai_hub.orchestration.models.message import SystemMessage, UserMessage
 from gen_ai_hub.orchestration.models.template import Template, TemplateValue
-from gen_ai_hub.orchestration.models.content_filter import AzureContentFilter
+from gen_ai_hub.orchestration.models.azure_content_filter import AzureContentFilter
 from gen_ai_hub.orchestration.service import OrchestrationService
 
 client = get_proxy_client()
