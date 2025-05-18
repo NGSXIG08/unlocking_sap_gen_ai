@@ -18,22 +18,30 @@ from gen_ai_hub.orchestration.models.template import Template, TemplateValue
 from gen_ai_hub.orchestration.models.azure_content_filter import AzureContentFilter
 from gen_ai_hub.orchestration.service import OrchestrationService
 
-client = get_proxy_client()
-deployment = retrieve_or_deploy_orchestration(client.ai_core_client)
-orchestration_service = OrchestrationService(api_url=deployment.deployment_url, proxy_client=client)
+from typing import Callable
 
-def send_request(prompt, _print=True, _model='meta--llama3-70b-instruct', **kwargs):
-    config = OrchestrationConfig(
-        llm=LLM(name=_model),
-        template=Template(messages=[UserMessage(prompt)])
-    )
-    template_values = [TemplateValue(name=key, value=value) for key, value in kwargs.items()]
-    answer = orchestration_service.run(config=config, template_values=template_values)
-    result = answer.module_results.llm.choices[0].message.content
-    if _print:
-        formatted_prompt = answer.module_results.templating[0].content
-        print(f"<-- PROMPT --->\n{formatted_prompt if _print else prompt}\n<--- RESPONSE --->\n{result}")   
-    return result
+from ai_core_sdk.ai_core_v2_client import AICoreV2Client
+from ai_api_client_sdk.models.status import Status
+import time
+from IPython.display import clear_output
+
+
+def spinner(check_callback: Callable, timeout: int = 300, check_every_n_seconds: int = 10):
+    start = time.time()
+    last_check = start
+    while time.time() - start < timeout:
+        now = time.time()
+        if now - start > timeout:
+            break
+        if now - last_check > check_every_n_seconds:
+            return_value = check_callback()
+            if return_value:
+                return return_value
+        for char in '|/-\\':
+            clear_output(wait=True)  # Clears the output to show a fresh update
+            print(f'Waiting for the deployment to become ready... {char}')
+            time.sleep(0.2)  # Adjust the speed as needed
+
 
 def retrieve_or_deploy_orchestration(ai_core_client: AICoreV2Client,
                                      scenario_id: str = "orchestration",
@@ -70,6 +78,31 @@ def retrieve_or_deploy_orchestration(ai_core_client: AICoreV2Client,
         return None if updated_deployment.status != Status.RUNNING else updated_deployment
     
     return spinner(check_ready)
+
+client = get_proxy_client()
+deployment = retrieve_or_deploy_orchestration(client.ai_core_client)
+orchestration_service = OrchestrationService(api_url=deployment.deployment_url, proxy_client=client)
+
+def send_request(prompt, _print=True, _model='gpt-4o', **kwargs):
+    config = OrchestrationConfig(
+        llm=LLM(name=_model),
+        template=Template(messages=[UserMessage(prompt)])
+    )
+    template_values = [TemplateValue(name=key, value=value) for key, value in kwargs.items()]
+    answer = orchestration_service.run(config=config, template_values=template_values)
+    result = answer.module_results.llm.choices[0].message.content
+    if _print:
+        formatted_prompt = answer.module_results.templating[0].content
+        print(f"<-- PROMPT --->\n{formatted_prompt if _print else prompt}\n<--- RESPONSE --->\n{result}")   
+    return result
+
+HERE = pathlib.Path.cwd()
+
+with (HERE / 'filtered_mails-hardest.jsonl').open() as stream:
+    mails = [json.loads(line) for line in stream if line.strip()]
+
+dev_set, test_set = mails[:int(len(mails)/2)], mails[int(len(mails)/2):]
+test_set_small = test_set[:20]
 
 mail = dev_set[EXAMPLE_MESSAGE_IDX]
 
