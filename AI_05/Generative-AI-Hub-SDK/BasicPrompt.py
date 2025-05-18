@@ -104,6 +104,20 @@ with (HERE / 'filtered_mails-hardest.jsonl').open() as stream:
 dev_set, test_set = mails[:int(len(mails)/2)], mails[int(len(mails)/2):]
 test_set_small = test_set[:20]
 
+categories = set()
+urgency = set()
+sentiment = set()
+for mail in mails:
+    categories = categories.union(set(mail['ground_truth']['categories']))
+    urgency.add(mail['ground_truth']['urgency'])
+    sentiment.add(mail['ground_truth']['sentiment'])
+
+option_lists = {
+    'urgency': ', '.join(f"`{entry}`" for entry in urgency),
+    'sentiment': ', '.join(f"`{entry}`" for entry in sentiment),
+    'categories': ', '.join(f"`{entry}`" for entry in categories),
+}
+
 mail = dev_set[EXAMPLE_MESSAGE_IDX]
 
 prompt_1 = """Giving the following message:
@@ -128,11 +142,7 @@ Your task is to extract:
 - "sentiment" as one of {sentiment}
 """
 
-option_lists = {
-    'urgency': ', '.join(f"`{entry}`" for entry in urgency),
-    'sentiment': ', '.join(f"`{entry}`" for entry in sentiment),
-    'categories': ', '.join(f"`{entry}`" for entry in categories),
-}
+
 
 f_2 = partial(send_request, prompt=prompt_2, **option_lists)
 
