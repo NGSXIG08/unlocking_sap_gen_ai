@@ -120,16 +120,14 @@ print(option_lists)
 
 mail = dev_set[EXAMPLE_MESSAGE_IDX]
 
-prompt_6 = """Giving the following message:
+prompt_7 = """Giving the following message:
 ---
 {{?input}}
 ---
-Assign a list best matching support category tags to the message:
-{{?categories}}
+Extract and return a json with the follwoing keys and values:
+- "categories" list of the best matching support category tags from: {{?categories}}
+Your complete message should be a valid json string that can be read directly and only contain the keys mentioned in the list above. Never enclose it in ```json...```, no newlines, no unnessacary whitespaces.
 """
-option_lists = {
-    'categories': ', '.join(f"`{entry}`" for entry in categories),
-}
-f_6 = partial(send_request, prompt=prompt_6, **option_lists)
+f_7 = partial(send_request, prompt=prompt_7, **option_lists)
 
-response = f_6(input=mail["message"])
+response = f_7(input=mail["message"])
