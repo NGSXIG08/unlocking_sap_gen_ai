@@ -116,6 +116,8 @@ option_lists = {
     'categories': ', '.join(f"`{entry}`" for entry in categories),
 }
 
+print(option_lists)
+
 mail = dev_set[EXAMPLE_MESSAGE_IDX]
 
 prompt_1 = """Giving the following message:
