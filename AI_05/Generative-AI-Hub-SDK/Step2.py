@@ -1,3 +1,5 @@
+YOUR_API_URL = "https://api.ai.prod.us-east-1.aws.ml.hana.ondemand.com/v2/inference/deployments/d4f47cb57c6f627a"
+
 from typing import Literal, Type, Union, Dict, Any, List, Callable
 import re, pathlib, json, time
 from functools import partial
@@ -116,16 +118,33 @@ option_lists = {
     'categories': ', '.join(f"`{entry}`" for entry in categories),
 }
 
+print(option_lists)
+
 mail = dev_set[EXAMPLE_MESSAGE_IDX]
+
+prompt_1 = """Giving the following message:
+---
+{{?input}}
+---
+Your task is to extract
+- urgency
+- sentiment
+"""
+
+f_1 = partial(send_request, prompt=prompt_1)
+
+response = f_1(input=mail["message"])
 
 prompt_2 = """Giving the following message:
 ---
 {{?input}}
 ---
 Your task is to extract:
-- "urgency" as one of {urgency}
-- "sentiment" as one of {sentiment}
+- "urgency" as one of {{?urgency}}
+- "sentiment" as one of {{?sentiment}}
+- "category" as one of {{?categories}}
 """
+
 f_2 = partial(send_request, prompt=prompt_2, **option_lists)
 
 response = f_2(input=mail["message"])
