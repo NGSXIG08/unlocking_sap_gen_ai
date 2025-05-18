@@ -1,6 +1,6 @@
 from gen_ai_hub.proxy.native.openai import completions
 response = completions.create(
-    model_name="gpt-3.5-turbo",
+    model_name="gemini-1.5-pro",
     prompt="The Answer to the Ultimate Question of Life, the Universe, and Everything is",
     max_tokens=7,
     temperature=0
