@@ -122,19 +122,6 @@ print(option_lists)
 
 mail = dev_set[EXAMPLE_MESSAGE_IDX]
 
-prompt_1 = """Giving the following message:
----
-{{?input}}
----
-Your task is to extract
-- urgency
-- sentiment
-"""
-
-f_1 = partial(send_request, prompt=prompt_1)
-
-response = f_1(input=mail["message"])
-
 prompt_2 = """Giving the following message:
 ---
 {{?input}}
