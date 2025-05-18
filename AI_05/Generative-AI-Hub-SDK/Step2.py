@@ -1,5 +1,3 @@
-YOUR_API_URL = "https://api.ai.prod.us-east-1.aws.ml.hana.ondemand.com/v2/inference/deployments/d4f47cb57c6f627a"
-
 from typing import Literal, Type, Union, Dict, Any, List, Callable
 import re, pathlib, json, time
 from functools import partial
