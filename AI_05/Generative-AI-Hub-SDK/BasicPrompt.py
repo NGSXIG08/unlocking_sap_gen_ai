@@ -128,6 +128,12 @@ Your task is to extract:
 - "sentiment" as one of {sentiment}
 """
 
+option_lists = {
+    'urgency': ', '.join(f"`{entry}`" for entry in urgency),
+    'sentiment': ', '.join(f"`{entry}`" for entry in sentiment),
+    'categories': ', '.join(f"`{entry}`" for entry in categories),
+}
+
 f_2 = partial(send_request, prompt=prompt_2, **option_lists)
 
 response = f_2(input=mail["message"])
