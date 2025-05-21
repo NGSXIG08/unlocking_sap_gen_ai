@@ -1,0 +1,23 @@
+Giving the following message:
+---
+Subject: Urgent HVAC System Repair Needed
+
+Dear Support Team,
+
+I hope this message finds you well. My name is [Sender], and I am reaching out to you from [Residential Complex Name], where I have been residing for the past few years. I have always appreciated the meticulous care and attention your team provides in maintaining our facilities.
+
+However, I am currently facing a pressing issue with the HVAC system in my apartment. Over the past few days, the system has been malfunctioning, resulting in inconsistent temperatures and, at times, complete shutdowns. Given the current weather conditions, this has become quite unbearable and is affecting my daily routine significantly.
+
+I have attempted to troubleshoot the problem by resetting the system and checking the thermostat settings, but these efforts have not yielded any improvement. The situation seems to be beyond my control and requires professional intervention.
+
+I kindly request that a repair team be dispatched immediately to address this urgent issue. The urgency of the matter cannot be overstated, as it is impacting not only my comfort but also my ability to carry out daily activities effectively.
+
+Thank you for your prompt attention to this matter. I look forward to your swift response and resolution.
+
+Best regards,
+[Sender]
+---
+Your task is to extract
+- urgency
+- sentiment
+"
