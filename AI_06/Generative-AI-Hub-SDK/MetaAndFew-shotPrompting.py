@@ -275,6 +275,22 @@ extract and return a json with the follwoing keys and values:
 Your complete message should be a valid json string that can be read directly and only contain the keys mentioned in the list above. Never enclose it in ```json...```, no newlines, no unnessacary whitespaces.
 """
 
+import random
+random.seed(42)
+
+k = 3
+examples = random.sample(dev_set, k)
+
+example_template = """<example>
+{example_input}
+
+## Output
+
+{example_output}
+</example>"""
+
+examples = '\n---\n'.join([example_template.format(example_input=example["message"], example_output=json.dumps(example["ground_truth"])) for example in examples])
+
 f_13 = partial(send_request, prompt=prompt_13, **option_lists, few_shot_examples=examples, **guides)
 
 response = f_13(input=mail["message"])
