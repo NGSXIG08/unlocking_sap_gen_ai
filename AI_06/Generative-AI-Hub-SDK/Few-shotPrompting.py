@@ -111,7 +111,9 @@ for mail in mails:
     sentiment.add(mail['ground_truth']['sentiment'])
 
 option_lists = {
-    'categories': ', '.join(f"`{entry}`" for entry in categories)
+    'urgency': ', '.join(f"`{entry}`" for entry in urgency),
+    'sentiment': ', '.join(f"`{entry}`" for entry in sentiment),
+    'categories': ', '.join(f"`{entry}`" for entry in categories),
 }
 
 print(option_lists)
