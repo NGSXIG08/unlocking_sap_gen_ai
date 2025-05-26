@@ -100,6 +100,25 @@ class RateLimitedIterator:
 
         self._last_yield_time = time.time()
         return next(self._iterable)
+
+def evaluation(mail: Dict[str, str], extract_func: Callable, _print=True, **kwargs):
+    response = extract_func(input=mail["message"], _print=_print, **kwargs)
+    result = {
+        "is_valid_json": False,
+        "correct_categories": False,
+        "correct_sentiment": False,
+        "correct_urgency": False,
+    }
+    try:
+        pred = json.loads(response)
+    except json.JSONDecodeError:
+        result["is_valid_json"] = False
+    else:
+        result["is_valid_json"] = True
+        result["correct_categories"] = 1 - (len(set(mail["ground_truth"]["categories"]) ^ set(pred["categories"])) / len(categories))
+        result["correct_sentiment"] = pred["sentiment"] == mail["ground_truth"]["sentiment"]
+        result["correct_urgency"] = pred["urgency"] == mail["ground_truth"]["urgency"]
+    return result
                                          
 from tqdm.auto import tqdm
 
