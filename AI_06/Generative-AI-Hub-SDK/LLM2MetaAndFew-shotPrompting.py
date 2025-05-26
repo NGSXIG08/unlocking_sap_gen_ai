@@ -295,5 +295,5 @@ f_13 = partial(send_request, prompt=prompt_13, **option_lists, few_shot_examples
 
 response = f_13(input=mail["message"])
 
-overall_result["metaprompting_and_few_shot--mixtral-small"] = evalulation_full_dataset(test_set_small, f_13, _model='gpt-4o')
+overall_result["metaprompting_and_few_shot--gpt-4o"] = evalulation_full_dataset(test_set_small, f_13, _model='gpt-4o')
 pretty_print_table(overall_result) 
