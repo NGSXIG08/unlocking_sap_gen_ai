@@ -77,6 +77,48 @@ def retrieve_or_deploy_orchestration(ai_core_client: AICoreV2Client,
     
     return spinner(check_ready)
 
+from tqdm.auto import tqdm
+import time
+
+class RateLimitedIterator:
+    def __init__(self, iterable, max_iterations_per_minute):
+        self._iterable = iter(iterable)
+        self._max_iterations_per_minute = max_iterations_per_minute
+        self._min_interval = 1.0 / (max_iterations_per_minute / 60.)
+        self._last_yield_time = None
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        current_time = time.time()
+
+        if self._last_yield_time is not None:
+            elapsed_time = current_time - self._last_yield_time
+            if elapsed_time < self._min_interval:
+                time.sleep(self._min_interval - elapsed_time)
+
+        self._last_yield_time = time.time()
+        return next(self._iterable)
+                                         
+from tqdm.auto import tqdm
+
+def transpose_list_of_dicts(list_of_dicts):
+    keys = list_of_dicts[0].keys()
+    transposed_dict = {key: [] for key in keys}
+    for d in list_of_dicts:
+        for key, value in d.items():
+            transposed_dict[key].append(value)
+    return transposed_dict
+    
+def evalulation_full_dataset(dataset, func, rate_limit=100, _print=False, **kwargs):
+    results = [evaluation(mail, func, _print=_print, **kwargs) for mail in tqdm(RateLimitedIterator(dataset, rate_limit), total=len(dataset))]
+    results = transpose_list_of_dicts(results)
+    n = len(dataset)
+    for k, v in results.items():
+        results[k] = sum(v) / len(dataset)
+    return results
+
 client = get_proxy_client()
 deployment = retrieve_or_deploy_orchestration(client.ai_core_client)
 orchestration_service = OrchestrationService(api_url=deployment.deployment_url, proxy_client=client)
