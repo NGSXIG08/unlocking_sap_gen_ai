@@ -244,7 +244,6 @@ for i, key in enumerate(["categories", "urgency", "sentiment"]):
     options = option_lists[key]
     selected_examples_txt_metaprompt = '\n---\n'.join([example_template_metaprompt.format(example_input=example["message"], key=key, example_output=example["ground_truth"][key]) for example in dev_set])
     guides[f"guide_{key}"] = send_request(prompt=prompt_get_guide, examples=selected_examples_txt_metaprompt, key=key, options=options, _print=False, _model='gpt-4o')
-response = f_10(input=mail["message"])
 
 print(guides['guide_urgency'])
 
