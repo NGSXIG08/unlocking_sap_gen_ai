@@ -151,7 +151,9 @@ example_template = """<example>
 
 examples = '\n---\n'.join([example_template.format(example_input=example["message"], example_output=json.dumps(example["ground_truth"])) for example in examples])
 
-
 f_10 = partial(send_request, prompt=prompt_10, few_shot_examples=examples, **option_lists)
 
 response = f_10(input=mail["message"])
+
+overall_result["few_shot--llama3-70b"] = evalulation_full_dataset(test_set_small, f_10)
+pretty_print_table(overall_result)
