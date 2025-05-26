@@ -1,0 +1,2 @@
+Pass:
+Generated bundle file /home/user/projects/unlocking_sap_gen_ai/AI_05/mdk05/.build/mdk05/.build/uploadBundle.zip
