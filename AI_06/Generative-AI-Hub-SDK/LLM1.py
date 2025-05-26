@@ -221,5 +221,5 @@ f_8 = partial(send_request, prompt=prompt_8, **option_lists)
 
 response = f_8(input=mail["message"])
 
-overall_result["basic--mixtral-8x7b"] = evalulation_full_dataset(test_set_small, f_8, _model='mistralai--mistral-small-instruct')
+overall_result["basic--mixtral-small"] = evalulation_full_dataset(test_set_small, f_8, _model='aaa')
 pretty_print_table(overall_result)
