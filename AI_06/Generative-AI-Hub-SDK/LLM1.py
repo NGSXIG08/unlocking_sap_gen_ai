@@ -165,7 +165,7 @@ def pretty_print_table(data):
 
 overall_result = {}
 
-def send_request(prompt, _print=True, _model='mistralai--mistral-small-instruct', **kwargs):
+def send_request(prompt, _print=True, _model='aaa', **kwargs):
     config = OrchestrationConfig(
         llm=LLM(name=_model),
         template=Template(messages=[UserMessage(prompt)])
@@ -221,5 +221,5 @@ f_8 = partial(send_request, prompt=prompt_8, **option_lists)
 
 response = f_8(input=mail["message"])
 
-overall_result["basic--mixtral-small"] = evalulation_full_dataset(test_set_small, f_8, _model='aaa')
+overall_result["basic--mixtral-small"] = evalulation_full_dataset(test_set_small, f_8, _model='mistralai--mistral-small-instruct')
 pretty_print_table(overall_result)
