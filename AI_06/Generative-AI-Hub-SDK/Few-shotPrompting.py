@@ -123,6 +123,30 @@ client = get_proxy_client()
 deployment = retrieve_or_deploy_orchestration(client.ai_core_client)
 orchestration_service = OrchestrationService(api_url=deployment.deployment_url, proxy_client=client)
 
+def pretty_print_table(data):
+    # Get all row names (outer dict keys)
+    row_names = list(data.keys())
+
+    # Get all column names (inner dict keys)
+    if row_names:
+        column_names = list(data[row_names[0]].keys())
+    else:
+        column_names = []
+
+    # Calculate column widths
+    column_widths = [max(len(str(column_name)), max(len(f"{data[row][column_name]:.2f}") for row in row_names)) for column_name in column_names]
+    row_name_width = max(len(str(row_name)) for row_name in row_names)
+
+    # Print header
+    header = f"{'':>{row_name_width}} " + " ".join([f"{column_name:>{width}}" for column_name, width in zip(column_names, column_widths)])
+    print(header)
+    print("=" * len(header))
+
+    # Print rows
+    for row_name in row_names:
+        row = f"{row_name:>{row_name_width}} " + " ".join([f"{data[row_name][column_name]:>{width}.1%}" for column_name, width in zip(column_names, column_widths)])
+        print(row)
+
 def send_request(prompt, _print=True, _model='gpt-4o', **kwargs):
     config = OrchestrationConfig(
         llm=LLM(name=_model),
