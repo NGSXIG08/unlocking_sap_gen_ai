@@ -166,6 +166,8 @@ def pretty_print_table(data):
         row = f"{row_name:>{row_name_width}} " + " ".join([f"{data[row_name][column_name]:>{width}.1%}" for column_name, width in zip(column_names, column_widths)])
         print(row)
 
+overall_result = {}
+
 def send_request(prompt, _print=True, _model='gpt-4o', **kwargs):
     config = OrchestrationConfig(
         llm=LLM(name=_model),
