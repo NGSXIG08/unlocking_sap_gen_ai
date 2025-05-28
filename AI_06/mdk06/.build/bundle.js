@@ -2036,17 +2036,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ GetLLMs)
 /* harmony export */ });
 /**
- * Returns a hardcoded array of LLMs objects.
- * @param {IClientAPI} clientAPI
+ * Returns a hardcoded array of available LLM model identifiers.
+ * 
+ * Models included span across multiple providers (OpenAI, Anthropic, Google, IBM, AWS, Mistral),
+ * covering a variety of use cases: from lightweight edge AI to enterprise-grade reasoning and multimodal interaction.
+ * 
+ * Reference:
+ * - https://openai.com/index/introducing-o3-and-o4-mini/
+ * - https://openai.com/index/learning-to-reason-with-llms/
+ * 
+ * @param {IClientAPI} clientAPI - MDK Client API context (not used in this implementation, but preserved for interface compatibility).
+ * @returns {Array<Object>} An array of objects each containing a `model` key that identifies an LLM.
  */
 function GetLLMs(clientAPI) {
-  const llms = [{
-    "model": "mistralai--mistral-small-instruct"
-  }, {
+  // Define the list of supported LLMs by their model identifiers.
+  const llms = [
+  // === Anthropic Claude 3 Series ===
+  {
+    "model": "anthropic--claude-3-haiku"
+  },
+  // Fastest Claude 3 model, ideal for real-time responses.
+  {
+    "model": "anthropic--claude-3-opus"
+  },
+  // Most capable Claude model; excels in deep reasoning.
+  {
+    "model": "anthropic--claude-3-sonnet"
+  },
+  // Balanced performance and speed for general use.
+  {
+    "model": "anthropic--claude-3.5-sonnet"
+  },
+  // Enhanced version with improved latency.
+  {
+    "model": "anthropic--claude-3.7-sonnet"
+  },
+  // Latest Claude iteration, optimized for low-lag logic tasks.
+
+  // === OpenAI GPT-4 and o-series ===
+  {
+    "model": "gpt-4"
+  },
+  // Standard high-accuracy GPT-4 model for broad tasks.
+  {
+    "model": "gpt-4.1"
+  },
+  // Improved version with greater stability and accuracy.
+  {
+    "model": "gpt-4.1-mini"
+  },
+  // Smaller variant, optimized for fast inference.
+  {
+    "model": "gpt-4.1-nano"
+  },
+  // Even smaller footprint for embedded environments.
+  {
     "model": "gpt-4o"
-  }, {
+  },
+  // Multimodal model (text/image/audio) with OpenAI’s fastest latency.
+  {
+    "model": "gpt-4o-mini"
+  },
+  // Compact version of GPT-4o for edge scenarios.
+
+  // === Google DeepMind Gemini Series ===
+  {
     "model": "gemini-1.5-flash"
-  }];
+  },
+  // Optimized for high-speed conversational AI.
+  {
+    "model": "gemini-1.5-pro"
+  },
+  // Full-featured model with multimodal and reasoning support.
+  {
+    "model": "gemini-2.0-flash"
+  },
+  // Updated low-latency model for instruction tasks.
+  {
+    "model": "gemini-2.0-flash-lite"
+  },
+  // Ultra-light variant for constrained environments.
+
+  // === IBM Granite ===
+  {
+    "model": "ibm--granite-13b-chat"
+  },
+  // Privacy-aware model designed for regulated industries.
+
+  // === Mistral AI ===
+  {
+    "model": "mistralai--mistral-large-instruct"
+  },
+  // Open-weight, instruction-tuned LLM for enterprise.
+  {
+    "model": "mistralai--mistral-small-instruct"
+  },
+  // Lightweight, instruction-optimized for fast execution.
+
+  // === Amazon Bedrock: Nova & Titan ===
+  {
+    "model": "amazon--nova-lite"
+  },
+  // General comprehension model.
+  {
+    "model": "amazon--nova-micro"
+  },
+  // Minimal model for serverless/IoT.
+  {
+    "model": "amazon--nova-pro"
+  },
+  // Advanced model for reasoning-heavy workloads.
+  {
+    "model": "amazon--titan-text-express"
+  },
+  // Expressive generation model for UI flows.
+  {
+    "model": "amazon--titan-text-lite"
+  },
+  // Lightweight model for high-volume generation.
+
+  // === OpenAI Reasoning-Optimized Models ===
+  {
+    "model": "o1"
+  },
+  // o1 is a mid-sized Large Language Model developed by OpenAI that focuses on improving reasoning accuracy rather than just generating fluent text. It was trained using a technique called process supervision, which teaches the model to prioritize correct reasoning steps over merely correct final answers.
+  {
+    "model": "o3"
+  },
+  // Mid-size OpenAI model trained with process supervision for reasoning accuracy.
+  {
+    "model": "o3-mini"
+  },
+  // Compact version of o3 for fast, cost-effective inference.
+  {
+    "model": "o4-mini"
+  } // Successor to o3-mini; better multilingual reasoning and robustness.
+  ];
+
+  // Return the hardcoded list of models
   return llms;
 }
 
@@ -2330,23 +2457,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ NavToDetail)
 /* harmony export */ });
 /* harmony import */ var _GetEmails__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GetEmails */ "./build.definitions/mdk06/Rules/GetEmails.js");
+// Import a custom function to retrieve emails
 
+
+// Define an asynchronous function named NavToDetail, which is exported as the default export
 async function NavToDetail(clientAPI) {
   try {
     // Show a loading indicator while the operation is in progress
     clientAPI.showActivityIndicator();
 
-    // Retrieve the current action binding (should include the user's message)
+    // Retrieve the current action binding (should contain input parameters such as the selected AI model)
     let actionBinding = clientAPI.getPageProxy().getActionBinding();
+
+    // Get the list of emails using a helper function
     const emails = (0,_GetEmails__WEBPACK_IMPORTED_MODULE_0__["default"])(clientAPI);
+
+    // Calculate the halfway point of the emails list
     const half = Math.floor(emails.length / 2);
+
+    // Use only the second half of the list as the test set
     const test_set = emails.slice(half);
+
+    // Take the first 2 items from the test set to limit the evaluation
     const test_set_small = test_set.slice(0, 2);
+
+    // Initialize score counters for evaluation metrics
     let totalUrgencyScore = 0;
     let totalSentimentScore = 0;
     let totalCategoryScore = 0;
+
+    // Count of processed emails
     let count = test_set_small.length;
+
+    // Variable to hold the last parsed result (optional use)
+    let str;
+
+    // Loop through each email in the small test set
     for (const email of test_set_small) {
+      // Construct the AI orchestration request body
       const body = {
         orchestration_config: {
           module_configurations: {
@@ -2367,31 +2515,51 @@ async function NavToDetail(clientAPI) {
                 }]
               }]
             },
+            // Specify the AI model to use, as selected by the user
             llm_module_config: {
               model_name: actionBinding.model
             }
           }
         },
+        // Provide the dynamic input parameters for the template
         input_params: {
           input: email.message,
           urgency: "`high`, `medium`, `low`",
           sentiment: "`positive`, `neutral`, `negative`",
-          categories: "`facility_management_issues`, `quality_and_safety_concerns`, `maintenance_requests`, `tenant_relations`"
+          categories: "`facility_management_issues`, `general_inquiries`, `sustainability_and_environmental_practices`, `quality_and_safety_concerns`, `routine_maintenance_requests`, `cleaning_services_scheduling`, `training_and_support_requests`, `specialized_cleaning_services`, `customer_feedback_and_complaints`, `emergency_repair_services`"
         }
       };
+
+      // Store the request body in client data (can be accessed by Completion.action)
       clientAPI.getPageProxy().getAppClientData().body = body;
+
+      // Call the Completion.action to execute the orchestration and get the prediction
       const response = await clientAPI.executeAction("/mdk06/Actions/Completion.action");
+
+      // Extract the predicted content from the orchestration response
       const content = response?.data?.orchestration_result?.choices?.[0]?.message?.content || "{}";
       let parsed = {};
       try {
+        // Try to parse the content as JSON
         parsed = JSON.parse(content);
       } catch (_) {
+        // If parsing fails, skip this entry
         continue;
       }
+
+      // Access the ground truth labels associated with the current email
       const gt = email.ground_truth;
+
+      // Evaluate the urgency match (binary score)
       const urgencyScore = parsed.urgency === gt.urgency ? 1 : 0;
+
+      // Evaluate the sentiment match (binary score)
       const sentimentScore = parsed.sentiment === gt.sentiment ? 1 : 0;
+
+      // Initialize the category match score
       let categoryScore = 0;
+
+      // If both predicted and ground truth categories are arrays, calculate the Jaccard similarity
       if (Array.isArray(gt.categories) && Array.isArray(parsed.categories)) {
         const gtSet = new Set(gt.categories);
         const predSet = new Set(parsed.categories);
@@ -2399,36 +2567,39 @@ async function NavToDetail(clientAPI) {
         const union = new Set([...gtSet, ...predSet]);
         categoryScore = union.size > 0 ? intersection.length / union.size : 0;
       }
+
+      // Accumulate the evaluation scores
       totalUrgencyScore += urgencyScore;
       totalSentimentScore += sentimentScore;
       totalCategoryScore += categoryScore;
+
+      // Optionally store the last parsed result
+      str = parsed;
     }
+
+    // Calculate the average score for each metric
     const averageUrgency = totalUrgencyScore / count;
     const averageSentiment = totalSentimentScore / count;
     const averageCategory = totalCategoryScore / count;
+
+    // Create a new binding object that includes the original values and the calculated scores
     let mergedBinding = {
       ...actionBinding,
       averageUrgency,
       averageSentiment,
       averageCategory
     };
-    clientAPI.executeAction({
-      Name: "/mdk06/Actions/GenericMessageBox.action",
-      Properties: {
-        Message: JSON.stringify(mergedBinding, null, 2)
-      }
-    });
 
     // Set the merged object as the new action binding to be used in the next page
     clientAPI.getPageProxy().setActionBinding(mergedBinding);
 
-    // Hide the loading indicator
+    // Hide the loading indicator now that the operation is done
     clientAPI.dismissActivityIndicator();
 
-    // Navigate to the detail page using the updated binding
+    // Navigate to the detail page with the updated action binding
     return clientAPI.executeAction("/mdk06/Actions/NavToDetail.action");
   } catch (error) {
-    // If an error occurs, show a message box and hide the activity indicator
+    // If any error occurs, display a message and hide the activity indicator
     clientAPI.executeAction({
       Name: "/mdk06/Actions/GenericMessageBox.action",
       Properties: {
