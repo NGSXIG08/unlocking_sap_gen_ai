@@ -40,7 +40,7 @@ export default function GetLLMs(clientAPI) {
         // === IBM Granite ===
         { "model": "ibm--granite-13b-chat" },             // Privacy-aware model designed for regulated industries.
 
-        // === Mistral AI ===
+        // === Mistral AI (Hosted by SAP) ===
         { "model": "mistralai--mistral-large-instruct" }, // Open-weight, instruction-tuned LLM for enterprise.
         { "model": "mistralai--mistral-small-instruct" }, // Lightweight, instruction-optimized for fast execution.
 
