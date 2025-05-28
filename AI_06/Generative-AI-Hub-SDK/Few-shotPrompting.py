@@ -168,7 +168,7 @@ def pretty_print_table(data):
 
 overall_result = {}
 
-def send_request(prompt, _print=True, _model='gpt-4o', **kwargs):
+def send_request(prompt, _print=True, _model='mistralai--mistral-small-instruct', **kwargs):
     config = OrchestrationConfig(
         llm=LLM(name=_model),
         template=Template(messages=[UserMessage(prompt)])
@@ -242,5 +242,5 @@ f_10 = partial(send_request, prompt=prompt_10, few_shot_examples=examples, **opt
 
 response = f_10(input=mail["message"])
 
-overall_result["few_shot--llama3-70b"] = evalulation_full_dataset(test_set_small, f_10)
+overall_result["few_shot--mixtral-small"] = evalulation_full_dataset(test_set_small, f_10)
 pretty_print_table(overall_result)
