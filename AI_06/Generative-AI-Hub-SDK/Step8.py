@@ -165,7 +165,7 @@ def pretty_print_table(data):
 
 overall_result = {}
 
-def send_request(prompt, _print=True, _model='gpt-4o', **kwargs):
+def send_request(prompt, _print=True, _model='mistralai--mistral-small-instruct', **kwargs):
     config = OrchestrationConfig(
         llm=LLM(name=_model),
         template=Template(messages=[UserMessage(prompt)])
