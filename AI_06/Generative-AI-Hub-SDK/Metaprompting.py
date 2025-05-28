@@ -168,7 +168,7 @@ def pretty_print_table(data):
 
 overall_result = {}
 
-def send_request(prompt, _print=True, _model='gpt-4o', **kwargs):
+def send_request(prompt, _print=True, _model='mistralai--mistral-small-instruct', **kwargs):
     config = OrchestrationConfig(
         llm=LLM(name=_model),
         template=Template(messages=[UserMessage(prompt)])
@@ -273,5 +273,5 @@ Your complete message should be a valid json string that can be read directly an
 f_12 = partial(send_request, prompt=prompt_12, **option_lists, **guides)
 response = f_12(input=mail["message"])
 
-overall_result["metaprompting--llama3-70b"] = evalulation_full_dataset(test_set_small, f_12)
+overall_result["metaprompting--mixtral-small"] = evalulation_full_dataset(test_set_small, f_12)
 pretty_print_table(overall_result)
