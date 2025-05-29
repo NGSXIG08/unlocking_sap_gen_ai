@@ -26,4 +26,4 @@ spec:
         - '-c'
       args:
        - |
-        print("Hello from SAP AI Core")
+        print("Hello World from SAP AI Core")
