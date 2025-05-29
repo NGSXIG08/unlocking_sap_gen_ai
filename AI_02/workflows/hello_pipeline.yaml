@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: first-pipeline-i751878
+  name: first-pipeline-i537754
   annotations:
     scenarios.ai.sap.com/description: "Introduction to SAP AI Core"
     scenarios.ai.sap.com/name: "i537754"
