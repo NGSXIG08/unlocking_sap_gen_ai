@@ -4,11 +4,11 @@ metadata:
   name: first-pipeline-i751878
   annotations:
     scenarios.ai.sap.com/description: "Introduction to SAP AI Core"
-    scenarios.ai.sap.com/name: "i751878"
+    scenarios.ai.sap.com/name: "i537754"
     executables.ai.sap.com/description: "Greets the user"
     executables.ai.sap.com/name: "Hello Pipeline"
   labels:
-    scenarios.ai.sap.com/id: "i751878"
+    scenarios.ai.sap.com/id: "i537754"
     ai.sap.com/version: "1.0"
 spec:
   entrypoint: mypipeline
