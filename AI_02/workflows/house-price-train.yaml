@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: data-pipeline-i751878 # executable id, must be unique across all your workflows (YAML files)
+  name: data-pipeline-i537754 # executable id, must be unique across all your workflows (YAML files)
   annotations:
     scenarios.ai.sap.com/description: "Introduction to SAP SAP Business AI"
-    scenarios.ai.sap.com/name: "i751878" # Scenario name should be the use case
+    scenarios.ai.sap.com/name: "i537754" # Scenario name should be the use case
     executables.ai.sap.com/description: "Train with live data"
     executables.ai.sap.com/name: "training" # Executable name should describe the workflow in the use case
     artifacts.ai.sap.com/housedataset.kind: "dataset" # Helps in suggesting the kind of inputs that can be attached.
     artifacts.ai.sap.com/housemodel.kind: "model" # Helps in suggesting the kind of artifact that can be generated.
   labels:
-    scenarios.ai.sap.com/id: "i751878"
+    scenarios.ai.sap.com/id: "i537754"
     ai.sap.com/version: "3.0"
 spec:
   imagePullSecrets:
